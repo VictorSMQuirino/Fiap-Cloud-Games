@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIAP_CloudGames.Domain", "src\FIAP_CloudGames.Domain\FIAP_CloudGames.Domain.csproj", "{1AB591CD-1AD9-4A21-8792-88AB6E9FCF8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIAP_CloudGames.Infrastructure", "src\FIAP_CloudGames.Infrastructure\FIAP_CloudGames.Infrastructure.csproj", "{4622ACFA-FF01-4C6A-ADEC-B313A5BF3DAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{1AB591CD-1AD9-4A21-8792-88AB6E9FCF8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AB591CD-1AD9-4A21-8792-88AB6E9FCF8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AB591CD-1AD9-4A21-8792-88AB6E9FCF8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4622ACFA-FF01-4C6A-ADEC-B313A5BF3DAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4622ACFA-FF01-4C6A-ADEC-B313A5BF3DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4622ACFA-FF01-4C6A-ADEC-B313A5BF3DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4622ACFA-FF01-4C6A-ADEC-B313A5BF3DAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
