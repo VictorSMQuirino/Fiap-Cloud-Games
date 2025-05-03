@@ -4,4 +4,5 @@ public class Game : BaseEntity
 {
     public string Title { get; set; }
     public decimal Price { get; set; }
+    public ICollection<UserGame> UserGames { get; set; }
 }

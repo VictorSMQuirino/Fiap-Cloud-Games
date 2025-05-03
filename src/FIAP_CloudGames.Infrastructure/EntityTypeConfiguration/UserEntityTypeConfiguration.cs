@@ -13,5 +13,8 @@ public class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>
         builder.Property(user => user.Name).IsRequired();
         builder.Property(user => user.Email).IsRequired();
         builder.Property(user => user.Password).IsRequired();
+        builder.Property(user => user.Role).HasConversion<string>().IsRequired();
+        
+        builder.HasIndex(user => user.Email).IsUnique();
     }
 }
