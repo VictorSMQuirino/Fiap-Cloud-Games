@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using FIAP_CloudGames.Domain.Entities;
 using FIAP_CloudGames.Domain.Interfaces.Repositories;
 using FIAP_CloudGames.Infrastructure.Context;
@@ -40,4 +41,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
         _dbSet.Remove(entity);
         await _context.SaveChangesAsync();
     }
+
+    public async Task<bool> ExistsBy(Expression<Func<T, bool>> predicate) 
+        => await _dbSet.AnyAsync(predicate);
 }

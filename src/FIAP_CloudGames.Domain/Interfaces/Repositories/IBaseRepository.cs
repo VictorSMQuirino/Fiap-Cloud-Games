@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using FIAP_CloudGames.Domain.Entities;
 
 namespace FIAP_CloudGames.Domain.Interfaces.Repositories;
@@ -9,4 +10,5 @@ public interface IBaseRepository<T> where T : BaseEntity
     Task CreateAsync(T entity);
     Task UpdateAsync(T entity);
     Task DeleteAsync(T entity);
+    Task<bool> ExistsBy(Expression<Func<T, bool>> predicate);
 }
