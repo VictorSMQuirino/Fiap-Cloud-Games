@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FIAP_CloudGames.Infrastructure.Context;
 
-public class FiapCloudGamesDbContext : DbContext
+public class FiapCloudGamesDbContext(DbContextOptions<FiapCloudGamesDbContext> options) : DbContext(options)
 {
     public DbSet<Game> Games { get; set; }
     public DbSet<User> Users { get; set; }

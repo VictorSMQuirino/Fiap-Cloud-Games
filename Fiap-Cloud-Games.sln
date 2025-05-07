@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIAP_CloudGames.Domain", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIAP_CloudGames.Infrastructure", "src\FIAP_CloudGames.Infrastructure\FIAP_CloudGames.Infrastructure.csproj", "{4622ACFA-FF01-4C6A-ADEC-B313A5BF3DAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIAP_CloudGames.API", "src\FIAP_CloudGames.API\FIAP_CloudGames.API.csproj", "{7413DE47-9A39-4ECC-9803-6F6234A9E420}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{4622ACFA-FF01-4C6A-ADEC-B313A5BF3DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4622ACFA-FF01-4C6A-ADEC-B313A5BF3DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4622ACFA-FF01-4C6A-ADEC-B313A5BF3DAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7413DE47-9A39-4ECC-9803-6F6234A9E420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7413DE47-9A39-4ECC-9803-6F6234A9E420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7413DE47-9A39-4ECC-9803-6F6234A9E420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7413DE47-9A39-4ECC-9803-6F6234A9E420}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

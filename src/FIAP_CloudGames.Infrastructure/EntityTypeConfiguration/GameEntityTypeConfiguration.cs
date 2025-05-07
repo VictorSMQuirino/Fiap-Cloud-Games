@@ -12,6 +12,7 @@ public class GameEntityTypeConfiguration : IEntityTypeConfiguration<Game>
         builder.HasKey(game => game.Id);
         builder.Property(game => game.Title).IsRequired();
         builder.Property(game => game.Price).IsRequired();
+        builder.Property(game => game.ReleaseDate).IsRequired();
         
         builder.HasIndex(game => game.Title).IsUnique();
     }

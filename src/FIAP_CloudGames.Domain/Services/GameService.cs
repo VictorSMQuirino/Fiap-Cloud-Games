@@ -26,7 +26,7 @@ public class GameService : IGameService
             throw new ValidationException(validator.Errors.ConvertValidationErrors());
         }
 
-        if (await _gameRepository.ExistsBy(game => game.Title.Equals(gameDto.Title, StringComparison.CurrentCultureIgnoreCase)))
+        if (await _gameRepository.ExistsBy(game => game.Title.ToUpper().Equals(gameDto.Title.ToUpper())))
         {
             throw new DuplicatedEntityException(nameof(Game), nameof(Game.Title), gameDto.Title);
         }
@@ -52,7 +52,7 @@ public class GameService : IGameService
         if (game is null) throw new NotFoundException(nameof(Game), id);
         
         if (await _gameRepository.ExistsBy(gameInDb => 
-                gameInDb.Title.Equals(gameDto.Title, StringComparison.CurrentCultureIgnoreCase)
+                gameInDb.Title.ToUpper().Equals(gameDto.Title.ToUpper())
                 && gameInDb.Id != game.Id))
         {
             throw new DuplicatedEntityException(nameof(Game), nameof(Game.Title), gameDto.Title);
