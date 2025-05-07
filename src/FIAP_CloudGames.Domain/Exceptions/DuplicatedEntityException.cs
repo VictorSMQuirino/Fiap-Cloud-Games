@@ -7,7 +7,8 @@ public class DuplicatedEntityException : DomainException
     public DuplicatedEntityException(string entityName, string propertyName, object attemptedValue) 
         : base(
             $"Already exists a {entityName} with {propertyName} equals to '{attemptedValue}'.", 
-            entityName, propertyName, 
+            entityName, 
+            propertyName, 
             attemptedValue,
             HttpStatusCode.Conflict) { }
 }

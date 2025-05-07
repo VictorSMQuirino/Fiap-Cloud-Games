@@ -28,7 +28,6 @@ public class GameController : ControllerBase
 
         var id = await _gameService.CreateAsync(dto);
         
-        // return Created($"api/v1/games/{id}", id);
         return CreatedAtAction(nameof(GetById), new { id }, id);
     }
 
