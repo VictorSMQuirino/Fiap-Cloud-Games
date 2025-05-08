@@ -1,5 +1,6 @@
 using FIAP_CloudGames.API.Extensions.Converters.Game;
 using FIAP_CloudGames.API.Requests.Game;
+using FIAP_CloudGames.API.Responses.Game;
 using FIAP_CloudGames.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -66,7 +67,7 @@ public class GameController : ControllerBase
     /// <param name="id"></param>
     /// <returns></returns>
     [HttpGet("{id:guid}")]
-    public async Task<ActionResult> GetById(Guid id)
+    public async Task<ActionResult<GetGameByIdResponse>> GetById(Guid id)
     {
         var dto = await _gameService.GetByIdAsync(id);
 
@@ -78,7 +79,7 @@ public class GameController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public async Task<ActionResult> GetAll()
+    public async Task<ActionResult<ICollection<GetGameByIdResponse>>> GetAll()
     {
         var dtoList = await _gameService.GetAllAsync();
         
