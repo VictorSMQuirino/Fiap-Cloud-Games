@@ -13,6 +13,9 @@ public static class DomainServiceRegistration
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         services.AddScoped<IGameService, GameService>();
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IPasswordService, BcryptService>();
+        services.AddScoped<ITokenService, TokenService>();
         
         return services;
     }
