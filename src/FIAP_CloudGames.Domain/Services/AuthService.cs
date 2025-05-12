@@ -33,13 +33,9 @@ public class AuthService : IAuthService
         
         if (alreadyExistisUserWithEmail) throw new DuplicatedEntityException(nameof(User), nameof(dto.Email), dto.Email);
 
-        var newUser = new User
-        {
-            Name = dto.Name,
-            Email = dto.Email,
-            Password = _passwordService.HashPassword(dto.Password),
-            Role = UserRole.Common
-        };
+        var hashedPassword = _passwordService.HashPassword(dto.Password);
+        
+        var newUser = dto.ToUser(hashedPassword);
 
         await _userRepository.CreateAsync(newUser);
     }
