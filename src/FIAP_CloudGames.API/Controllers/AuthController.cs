@@ -23,6 +23,11 @@ public class AuthController : ControllerBase
         _configuration = configuration;
     }
 
+    /// <summary>
+    /// Create a user account
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
     [HttpPost("signup")]
     public async Task<ActionResult> SignUp([FromBody] CreateUserRequest request)
     {
@@ -33,6 +38,11 @@ public class AuthController : ControllerBase
         return Created();
     }
 
+    /// <summary>
+    /// Authenticate with a user account
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
     [HttpPost("login")]
     public async Task<ActionResult<TokenResponse>> Login([FromBody] LoginRequest request)
     {

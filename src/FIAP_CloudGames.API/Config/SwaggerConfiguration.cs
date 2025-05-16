@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace FIAP_CloudGames.API.Config;
 
 public static class SwaggerConfiguration
@@ -36,6 +38,11 @@ public static class SwaggerConfiguration
                     Array.Empty<string>()
                 }
             });
+
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            
+            options.IncludeXmlComments(xmlPath);
         });
 
         return services;
