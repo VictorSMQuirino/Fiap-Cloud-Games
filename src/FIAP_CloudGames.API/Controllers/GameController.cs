@@ -2,12 +2,14 @@ using FIAP_CloudGames.API.Extensions.Converters.Game;
 using FIAP_CloudGames.API.Requests.Game;
 using FIAP_CloudGames.API.Responses.Game;
 using FIAP_CloudGames.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FIAP_CloudGames.API.Controllers;
 
 [ApiController]
 [Route("api/v1/games")]
+[Authorize(Roles = "Admin")]
 public class GameController : ControllerBase
 {
     private readonly IGameService _gameService;

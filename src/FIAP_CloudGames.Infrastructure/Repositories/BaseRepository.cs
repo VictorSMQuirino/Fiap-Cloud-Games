@@ -44,4 +44,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 
     public async Task<bool> ExistsBy(Expression<Func<T, bool>> predicate) 
         => await _dbSet.AnyAsync(predicate);
+
+    public async Task<T?> GetBy(Expression<Func<T, bool>> predicate) 
+        => await _dbSet.FirstOrDefaultAsync(predicate);
 }

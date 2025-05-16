@@ -5,5 +5,6 @@ public enum ErrorCode
     ValidationError,
     NotFound,
     DomainError,
+    InvalidCredentialsError,
     UnexpectedError,
 }

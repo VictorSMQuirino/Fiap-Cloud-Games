@@ -1,3 +1,4 @@
+using FIAP_CloudGames.Domain.DTO.Auth;
 using FIAP_CloudGames.Domain.DTO.User;
 using FIAP_CloudGames.Domain.Entities;
 using FIAP_CloudGames.Domain.Enums;
@@ -38,5 +39,17 @@ public class AuthService : IAuthService
         var newUser = dto.ToUser(hashedPassword);
 
         await _userRepository.CreateAsync(newUser);
+    }
+
+    public async Task<string> Login(LoginDto dto)
+    {
+        var user = await _userRepository.GetBy(u => u.Email == dto.Email);
+
+        if (user is null || !_passwordService.VerifyHashedPassword(user.Password, dto.Password))
+            throw new InvalidCredentialException();
+        
+        var token = _tokenService.GenerateToken(user);
+        
+        return token;
     }
 }

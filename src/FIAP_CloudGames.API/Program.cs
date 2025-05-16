@@ -1,3 +1,4 @@
+using FIAP_CloudGames.API.Config;
 using FIAP_CloudGames.API.Middlewares;
 using FIAP_CloudGames.Domain;
 using FIAP_CloudGames.Infrastructure;
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.ConfigureAuthentication(builder.Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
@@ -16,7 +18,7 @@ builder.Services.AddDomainServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.ConfigureSwagger(builder.Configuration);
 
 var app = builder.Build();
 
@@ -31,6 +33,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

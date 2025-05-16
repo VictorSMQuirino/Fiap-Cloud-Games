@@ -11,4 +11,5 @@ public interface IBaseRepository<T> where T : BaseEntity
     Task UpdateAsync(T entity);
     Task DeleteAsync(T entity);
     Task<bool> ExistsBy(Expression<Func<T, bool>> predicate);
+    Task<T?> GetBy(Expression<Func<T, bool>> predicate);
 }
