@@ -35,7 +35,7 @@ public class GameController : ControllerBase
     }
 
     /// <summary>
-    /// Update a existing game
+    /// Update an existing game
     /// </summary>
     /// <param name="id"></param>
     /// <param name="request"></param>

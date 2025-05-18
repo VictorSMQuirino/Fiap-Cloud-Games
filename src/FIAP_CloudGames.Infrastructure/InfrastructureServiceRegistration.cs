@@ -17,6 +17,7 @@ public static class InfrastructureServiceRegistration
 
         services.AddScoped<IGameRepository, GameRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IPromotionRepository, PromotionRepository>();
 
         return services;
     }

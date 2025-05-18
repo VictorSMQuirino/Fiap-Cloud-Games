@@ -3,7 +3,6 @@ using FIAP_CloudGames.Domain.Entities;
 using FIAP_CloudGames.Domain.Interfaces.Repositories;
 using FIAP_CloudGames.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace FIAP_CloudGames.Infrastructure.Repositories;
 
@@ -21,8 +20,44 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     public async Task<T?> GetByIdAsync(Guid id) 
         => await _dbSet.FindAsync(id);
 
+    public async Task<T?> GetByIdAsync(Guid id, params Expression<Func<T, object>>[] includes)
+    {
+        var query = _dbSet.AsQueryable();
+
+        foreach (var include in includes)
+        {
+            query = query.Include(include);
+        }
+        
+        return await query.SingleOrDefaultAsync(e => e.Id == id);
+    }
+
     public async Task<ICollection<T>> GetAllAsync() 
         => await _dbSet.ToListAsync();
+
+    public async Task<ICollection<T>> GetAllAsync(params Expression<Func<T, object>>[] includes)
+    {
+        var query = _dbSet.AsQueryable();
+        
+        foreach (var include in includes)
+            query = query.Include(include);
+        
+        return await query.ToListAsync();
+    }
+
+    public async Task<ICollection<T>> GetListBy(Expression<Func<T, bool>> predicate) 
+        => await _dbSet.Where(predicate).ToListAsync();
+
+    public async Task<ICollection<T>> GetListBy(Expression<Func<T, bool>> predicate,
+        params Expression<Func<T, object>>[] includes)
+    {
+        var query = _dbSet.AsQueryable();
+        
+        foreach (var include in includes)
+            query = query.Include(include);
+        
+        return await query.Where(predicate).ToListAsync();
+    }
 
     public async Task CreateAsync(T entity)
     {

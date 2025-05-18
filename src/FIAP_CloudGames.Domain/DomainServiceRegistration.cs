@@ -16,6 +16,7 @@ public static class DomainServiceRegistration
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IPasswordService, BcryptService>();
         services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<IPromotionService, PromotionService>();
         
         return services;
     }
