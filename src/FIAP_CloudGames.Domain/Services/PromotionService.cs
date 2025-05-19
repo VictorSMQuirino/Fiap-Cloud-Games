@@ -90,7 +90,7 @@ public class PromotionService : IPromotionService
 
     public async Task<ICollection<PromotionDto>> GetAllActiveAsync()
     {
-        var activePromotionsList = await _promotionRepository.GetListBy(p => p.Active, p => p.Game);
+        var activePromotionsList = await _promotionRepository.GetAllActivePromotions();
         
         return activePromotionsList.ToPromotionDtoList();
     }

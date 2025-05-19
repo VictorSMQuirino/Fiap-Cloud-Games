@@ -7,4 +7,7 @@ namespace FIAP_CloudGames.Infrastructure.Repositories;
 public class PromotionRepository : BaseRepository<Promotion>, IPromotionRepository
 {
     public PromotionRepository(FiapCloudGamesDbContext context) : base(context) { }
+
+    public async Task<ICollection<Promotion>> GetAllActivePromotions() 
+        => await GetListBy(p => p.Active, p => p.Game);
 }
