@@ -1,6 +1,7 @@
 using FIAP_CloudGames.API.Extensions.Converters.Promotion;
 using FIAP_CloudGames.API.Requests.Promotion;
 using FIAP_CloudGames.API.Responses.Promotion;
+using FIAP_CloudGames.Domain.Enums;
 using FIAP_CloudGames.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,7 @@ namespace FIAP_CloudGames.API.Controllers;
 
 [ApiController]
 [Route("api/v1/promotions")]
-[Authorize]
+[Authorize(Roles = nameof(UserRole.Admin))]
 public class PromotionController : ControllerBase
 {
     private readonly IPromotionService _promotionService;

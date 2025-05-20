@@ -22,6 +22,8 @@ builder.Services.ConfigureSwagger(builder.Configuration);
 
 var app = builder.Build();
 
+await SeedConfig.SeedAdminUser(app.Services, app.Configuration);
+
 app.UseExceptionHandler();
 
 // Configure the HTTP request pipeline.

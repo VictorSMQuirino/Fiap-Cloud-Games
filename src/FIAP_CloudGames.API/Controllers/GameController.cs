@@ -1,6 +1,7 @@
 using FIAP_CloudGames.API.Extensions.Converters.Game;
 using FIAP_CloudGames.API.Requests.Game;
 using FIAP_CloudGames.API.Responses.Game;
+using FIAP_CloudGames.Domain.Enums;
 using FIAP_CloudGames.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,6 @@ namespace FIAP_CloudGames.API.Controllers;
 
 [ApiController]
 [Route("api/v1/games")]
-[Authorize(Roles = "Admin")]
 public class GameController : ControllerBase
 {
     private readonly IGameService _gameService;
@@ -24,6 +24,7 @@ public class GameController : ControllerBase
     /// </summary>
     /// <param name="request"></param>
     /// <returns></returns>
+    [Authorize(Roles = nameof(UserRole.Admin))]
     [HttpPost]
     public async Task<ActionResult> Create([FromBody] CreateGameRequest request)
     {
@@ -40,6 +41,7 @@ public class GameController : ControllerBase
     /// <param name="id"></param>
     /// <param name="request"></param>
     /// <returns></returns>
+    [Authorize(Roles = nameof(UserRole.Admin))]
     [HttpPut("{id:guid}")]
     public async Task<ActionResult> Update(Guid id, [FromBody] UpdateGameRequest request)
     {
@@ -55,6 +57,7 @@ public class GameController : ControllerBase
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
+    [Authorize(Roles = nameof(UserRole.Admin))]
     [HttpDelete("{id:guid}")]
     public async Task<ActionResult> Delete(Guid id)
     {
@@ -68,6 +71,7 @@ public class GameController : ControllerBase
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
+    [AllowAnonymous]
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<GetGameByIdResponse>> GetById(Guid id)
     {
@@ -80,6 +84,7 @@ public class GameController : ControllerBase
     /// Get all games
     /// </summary>
     /// <returns></returns>
+    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<ICollection<GetGameByIdResponse>>> GetAll()
     {
