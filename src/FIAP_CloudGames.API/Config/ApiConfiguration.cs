@@ -11,6 +11,8 @@ public static class ApiConfiguration
         IConfiguration configuration)
     {
         services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
+
+        services.AddHttpContextAccessor();
         
         services.AddAuthentication(options =>
             {

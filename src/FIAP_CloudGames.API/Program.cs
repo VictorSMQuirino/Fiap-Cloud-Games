@@ -1,3 +1,4 @@
+using FIAP_CloudGames.API;
 using FIAP_CloudGames.API.Config;
 using FIAP_CloudGames.API.Middlewares;
 using FIAP_CloudGames.Domain;
@@ -14,6 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<ExceptionHandlingMiddleware>();
 
+builder.Services.AddApiServices();
 builder.Services.AddDomainServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 

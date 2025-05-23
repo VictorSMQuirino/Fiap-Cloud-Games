@@ -14,4 +14,10 @@ public static class UserExtensions
             Password = hashedPassword,
             Role = UserRole.Common
         };
+
+    public static UserDto ToDto(this User user)
+        => new(user.Id, user.Name, user.Email);
+
+    public static ICollection<UserDto> ToDtoList(this IEnumerable<User> users)
+        => users.Select(u => u.ToDto()).ToList();
 }
