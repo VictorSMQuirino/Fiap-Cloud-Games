@@ -3,7 +3,7 @@ using FIAP_CloudGames.Tests.Fixtures.Customizations;
 
 namespace FIAP_CloudGames.Tests.Fixtures;
 
-public class ServiceFixture
+public abstract class ServiceFixture
 {
     protected readonly Fixture _fixture;
 
