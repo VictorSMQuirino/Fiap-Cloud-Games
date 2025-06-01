@@ -21,7 +21,7 @@ public static class SwaggerConfiguration
                 Scheme = "Bearer",
                 BearerFormat = "JWT",
                 In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-                Description = "Digite: Bearer {seu_token_jwt}"
+                Description = "Digite: {seu_token_jwt}"
             });
 
             options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
