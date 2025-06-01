@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text.Json;
 using FIAP_CloudGames.Domain.Enums;
 using FIAP_CloudGames.Domain.Exceptions;
@@ -16,7 +17,11 @@ public class ExceptionHandlingMiddleware : IExceptionHandler
 
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
-        _logger.LogError(exception, exception.Message);
+        var request = httpContext.Request;
+        var method = request.Method;
+        var path = request.Path;
+        var queryString = request.QueryString.HasValue ? request.QueryString.Value : "";
+        object? statusCode = null;
 
         object? response;
         
@@ -38,7 +43,9 @@ public class ExceptionHandlingMiddleware : IExceptionHandler
                 Timestamp = DateTime.UtcNow
             };
             
-            httpContext.Response.StatusCode = (int)appException.StatusCode;
+            statusCode = appException.StatusCode;
+            
+            httpContext.Response.StatusCode = (int)statusCode;
         }
         else
         {
@@ -48,7 +55,17 @@ public class ExceptionHandlingMiddleware : IExceptionHandler
                 exception.Message,
                 Timestamp = DateTime.UtcNow
             };
+
+            statusCode = HttpStatusCode.InternalServerError;
         }
+        
+        _logger.LogError(
+            "Error in {Method} {Path}{QueryString} => Status code: {StatusCode}. Message: {Message}",
+            method,
+            path,
+            queryString,
+            (int)statusCode,
+            exception.Message);
         
         httpContext.Response.ContentType = "application/json";
         var json = JsonSerializer.Serialize(response);
