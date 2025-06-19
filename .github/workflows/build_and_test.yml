@@ -28,12 +28,28 @@ jobs:
         
       - name: Run tests  
         run: dotnet test tests/FIAP_CloudGames.Tests/FIAP_CloudGames.Tests.csproj --no-build --configuration Release --collect:"XPlat Code Coverage" --results-directory ./coverage
+      
+      - name: Find coverage report path
+        id: find_report
+        run: |
+          REPORT_PATH=$(find ./coverage -name coverage.cobertura.xml)
+          echo "Found report at: $REPORT_PATH"
+          echo "path=$REPORT_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Fix coverage report paths
+        if: steps.find_report.outputs.path != ''
+        run: |
+          FIX_PATH="/home/runner/work/Fiap-Cloud-Games/Fiap-Cloud-Games/"
+          echo "Fixing paths in ${{ steps.find_report.outputs.path }}"
+          sed -i "s|$FIX_PATH||g" ${{ steps.find_report.outputs.path }}
+          echo "Paths in report fixed. Showing first 10 lines of the fixed file:"
+          head -n 10 ${{ steps.find_report.outputs.path }}  
         
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./coverage/
+          files: ${{ steps.find_report.outputs.path }}
           flags: unit-tests
           name: codecov-umbrella
           fail_ci_if_error: true
