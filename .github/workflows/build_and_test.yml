@@ -27,7 +27,7 @@ jobs:
         run: dotnet build --no-restore --configuration Release -p:DebugType=portable
         
       - name: Run tests  
-        run: dotnet test tests/FIAP_CloudGames.Tests/FIAP_CloudGames.Tests.csproj --no-build --configuration Release --collect:"XPlat Code Coverage" --results-directory ./coverage
+        run: dotnet test tests/FIAP_CloudGames.Tests/FIAP_CloudGames.Tests.csproj --no-build --configuration Release --settings coverlet.runsettings --collect:"XPlat Code Coverage" --results-directory ./coverage
       
       - name: Find coverage report path
         id: find_report
