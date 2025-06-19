@@ -1,0 +1,16 @@
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 80% 
+        paths:          
+          - "src"
+
+flags:
+  unit-tests:
+    paths:
+      - src/FIAP_CloudGames.Domain/
+
+fixes:
+  - "::/home/runner/work/Fiap-Cloud-Games/Fiap-Cloud-Games/"
