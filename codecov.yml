@@ -4,8 +4,6 @@ coverage:
       default:
         target: auto
         threshold: 80% 
-        paths:          
-          - "src"
 
 flags:
   unit-tests:
