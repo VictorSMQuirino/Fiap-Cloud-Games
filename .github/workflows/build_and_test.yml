@@ -50,6 +50,5 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ${{ steps.find_report.outputs.path }}
-          flags: unit-tests
           name: codecov-umbrella
           fail_ci_if_error: true
