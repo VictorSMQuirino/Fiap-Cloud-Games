@@ -1,0 +1,27 @@
+﻿services:
+  db:
+    image: postgres:16-alpine
+    container_name: fiap-cloud-games-db
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgressql/data
+     
+  fiap_cloudgames.api:
+    image: victorquirino/fiap-cloud-games:latest
+    container_name: fiap-cloud-games-api
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
+    depends_on:
+      - db
+
+volumes:
+  postgres-data:

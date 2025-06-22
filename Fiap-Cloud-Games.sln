@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Items", "03 - Items", 
 		.github\workflows\build_and_test.yml = .github\workflows\build_and_test.yml
 		coverlet.runsettings = coverlet.runsettings
 		.github\workflows\publish_docker.yml = .github\workflows\publish_docker.yml
+		.env = .env
 	EndProjectSection
 EndProject
 Global
