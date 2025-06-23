@@ -6,6 +6,7 @@
         <Configuration>
           <Format>cobertura</Format>
           <Include>[FIAP_CloudGames.Domain]*</Include>
+          <Include>[FIAP_CloudGames.Application]*</Include>
           
           <Exclude>[FIAP_CloudGames.Tests]*</Exclude>
         </Configuration>
