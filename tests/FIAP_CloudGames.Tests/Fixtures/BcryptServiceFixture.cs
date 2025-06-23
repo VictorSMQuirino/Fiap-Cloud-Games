@@ -1,5 +1,5 @@
 using FIAP_CloudGames.Domain.Interfaces.Services;
-using FIAP_CloudGames.Domain.Services;
+using FIAP_CloudGames.Application.Services;
 
 namespace FIAP_CloudGames.Tests.Fixtures;
 

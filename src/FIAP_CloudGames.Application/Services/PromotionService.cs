@@ -1,12 +1,13 @@
+using FIAP_CloudGames.Application.Converters;
+using FIAP_CloudGames.Application.Validators.Promotion;
 using FIAP_CloudGames.Domain.DTO.Promotion;
 using FIAP_CloudGames.Domain.Entities;
 using FIAP_CloudGames.Domain.Exceptions;
 using FIAP_CloudGames.Domain.Extensions;
 using FIAP_CloudGames.Domain.Interfaces.Repositories;
 using FIAP_CloudGames.Domain.Interfaces.Services;
-using FIAP_CloudGames.Domain.Validators.Promotion;
 
-namespace FIAP_CloudGames.Domain.Services;
+namespace FIAP_CloudGames.Application.Services;
 
 public class PromotionService : IPromotionService
 {
@@ -23,15 +24,15 @@ public class PromotionService : IPromotionService
     {
         var validationResult = await new CreatePromotionValidator().ValidateAsync(dto);
 
-        if (!validationResult.IsValid) 
+        if (!validationResult.IsValid)
             throw new ValidationException(validationResult.Errors.ConvertValidationErrors());
-        
+
         var game = await _gameRepository.GetByIdAsync(dto.GameId);
 
         if (game is null) throw new NotFoundException(nameof(Game), dto.GameId);
 
         var promotion = dto.ToEntity();
-        
+
         await _promotionRepository.CreateAsync(promotion);
 
         return promotion.Id;
@@ -40,45 +41,43 @@ public class PromotionService : IPromotionService
     public async Task UpdateAsync(Guid id, UpdatePromotionDto dto)
     {
         var validationResult = await new UpdatePromotionValidator().ValidateAsync(dto);
-        
+
         if (!validationResult.IsValid)
             throw new ValidationException(validationResult.Errors.ConvertValidationErrors());
-        
+
         var promotion = await _promotionRepository.GetByIdAsync(id);
-        
+
         if (promotion is null) throw new NotFoundException(nameof(Promotion), id);
-        
+
         var game = await _gameRepository.GetByIdAsync(dto.GameId);
         
         if (game is null) throw new NotFoundException(nameof(Game), dto.GameId);
 
         promotion = dto.ToEntity(promotion);
-        
+
         await _promotionRepository.UpdateAsync(promotion);
     }
 
     public async Task DeleteAsync(Guid id)
     {
         var promotion = await _promotionRepository.GetByIdAsync(id);
-        
+
         if (promotion is null) throw new NotFoundException(nameof(Promotion), id);
-        
+
         if (promotion.Active) throw new DomainException("Cannot delete an active promotion.");
-        
+
         await _promotionRepository.DeleteAsync(promotion);
     }
 
     public async Task<PromotionDto?> GetByIdAsync(Guid id)
     {
         var promotion = await _promotionRepository.GetByIdAsync(id, p => p.Game);
-        
+
         if (promotion is null) throw new NotFoundException(nameof(Promotion), id);
 
         var gameDto = promotion.Game.ToGameDto();
 
-        var dto = promotion.ToDto(gameDto);
-        
-        return dto;
+        return promotion.ToDto(gameDto);
     }
 
     public async Task<ICollection<PromotionDto>> GetAllAsync()
@@ -91,26 +90,26 @@ public class PromotionService : IPromotionService
     public async Task<ICollection<PromotionDto>> GetAllActiveAsync()
     {
         var activePromotionsList = await _promotionRepository.GetAllActivePromotions();
-        
+
         return activePromotionsList.ToPromotionDtoList();
     }
 
     public async Task ActivePromotionAsync(Guid id)
     {
         var promotion = await _promotionRepository.GetByIdAsync(id);
-        
+
         if (promotion is null) throw new NotFoundException(nameof(Promotion), id);
         
         if (promotion.Active) throw new DomainException("The promotion is already active.");
-        
-        var existsAnActivePromotionForGame = await _promotionRepository.ExistsBy(p => 
-            p.GameId == promotion.GameId && 
-            p.Id != id && 
+
+        var existsAnActivePromotionForGame = await _promotionRepository.ExistsBy(p =>
+            p.GameId == promotion.GameId &&
+            p.Id != id &&
             p.Active);
-        
-        if (existsAnActivePromotionForGame) 
-            throw new DomainException("Already exists an active promotion for this game.");
-        
+
+        if (existsAnActivePromotionForGame)
+            throw new DomainException("Already exists an active promotion for this game");
+
         promotion.Active = true;
         await _promotionRepository.UpdateAsync(promotion);
     }

@@ -1,14 +1,14 @@
 using System.Reflection;
+using FIAP_CloudGames.Application.Services;
 using FIAP_CloudGames.Domain.Interfaces.Services;
-using FIAP_CloudGames.Domain.Services;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FIAP_CloudGames.Domain;
+namespace FIAP_CloudGames.Application;
 
-public static class DomainServiceRegistration
+public static class ApplicationServiceRegistration
 {
-    public static IServiceCollection AddDomainServices(this IServiceCollection services)
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

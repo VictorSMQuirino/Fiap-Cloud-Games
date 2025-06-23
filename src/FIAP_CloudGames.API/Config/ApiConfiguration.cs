@@ -1,5 +1,5 @@
 using System.Text;
-using FIAP_CloudGames.Domain.Auth;
+using FIAP_CloudGames.Application.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 

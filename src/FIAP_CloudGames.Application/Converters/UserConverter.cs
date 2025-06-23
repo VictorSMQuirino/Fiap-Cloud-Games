@@ -2,9 +2,9 @@ using FIAP_CloudGames.Domain.DTO.User;
 using FIAP_CloudGames.Domain.Entities;
 using FIAP_CloudGames.Domain.Enums;
 
-namespace FIAP_CloudGames.Domain.Extensions;
+namespace FIAP_CloudGames.Application.Converters;
 
-public static class UserExtensions
+public static class UserConverter
 {
     public static User ToUser(this CreateUserDto dto, string hashedPassword) 
         => new()

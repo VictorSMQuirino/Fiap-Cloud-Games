@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace FIAP_CloudGames.Domain.Validators;
+namespace FIAP_CloudGames.Application.Validators;
 
 public static partial class PasswordValidator
 {

@@ -1,13 +1,13 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using FIAP_CloudGames.Domain.Auth;
+using System.Text;
+using FIAP_CloudGames.Application.Auth;
 using FIAP_CloudGames.Domain.Entities;
 using FIAP_CloudGames.Domain.Interfaces.Services;
 using Microsoft.Extensions.Options;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace FIAP_CloudGames.Domain.Services;
+namespace FIAP_CloudGames.Application.Services;
 
 public class TokenService : ITokenService
 {
@@ -17,7 +17,7 @@ public class TokenService : ITokenService
     {
         _jwtSettings = jwtSettings.Value;
     }
-
+    
     public string GenerateToken(User user)
     {
         var claims = new[]
@@ -25,20 +25,20 @@ public class TokenService : ITokenService
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(ClaimTypes.Name, user.Name),
-            new Claim(ClaimTypes.Role, user.Role.ToString())
+            new Claim(ClaimTypes.Role, user.Role.ToString()),
         };
-
+        
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-        
+
         var token = new JwtSecurityToken(
             issuer: _jwtSettings.Issuer,
             audience: _jwtSettings.Audience,
             claims: claims,
             expires: DateTime.UtcNow.AddMinutes(_jwtSettings.ExpireMinutes),
             signingCredentials: creds
-            );
-        
+        );
+
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

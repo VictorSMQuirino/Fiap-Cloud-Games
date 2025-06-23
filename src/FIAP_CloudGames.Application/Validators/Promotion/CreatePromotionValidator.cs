@@ -2,7 +2,7 @@ using FIAP_CloudGames.Domain.DTO.Promotion;
 using FIAP_CloudGames.Domain.Extensions;
 using FluentValidation;
 
-namespace FIAP_CloudGames.Domain.Validators.Promotion;
+namespace FIAP_CloudGames.Application.Validators.Promotion;
 
 public class CreatePromotionValidator : AbstractValidator<CreatePromotionDto>
 {

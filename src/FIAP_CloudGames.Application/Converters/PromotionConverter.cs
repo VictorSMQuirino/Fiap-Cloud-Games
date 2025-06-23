@@ -2,11 +2,11 @@ using FIAP_CloudGames.Domain.DTO;
 using FIAP_CloudGames.Domain.DTO.Promotion;
 using FIAP_CloudGames.Domain.Entities;
 
-namespace FIAP_CloudGames.Domain.Extensions;
+namespace FIAP_CloudGames.Application.Converters;
 
-public static class PromotionExtensions
+public static class PromotionConverter
 {
-    public static Promotion ToEntity(this CreatePromotionDto dto) 
+    public static Promotion ToEntity(this CreatePromotionDto dto)
         => new()
         {
             GameId = dto.GameId,

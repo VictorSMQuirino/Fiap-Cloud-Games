@@ -1,4 +1,4 @@
-using FIAP_CloudGames.Domain.Auth;
+using FIAP_CloudGames.Application.Auth;
 using FIAP_CloudGames.Domain.Interfaces.Services;
 using FIAP_CloudGames.Tests.Fixtures;
 

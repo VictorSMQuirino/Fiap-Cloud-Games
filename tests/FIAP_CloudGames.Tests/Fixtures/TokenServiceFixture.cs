@@ -1,8 +1,8 @@
 using AutoFixture;
-using FIAP_CloudGames.Domain.Auth;
+using FIAP_CloudGames.Application.Auth;
 using FIAP_CloudGames.Domain.Entities;
 using FIAP_CloudGames.Domain.Interfaces.Services;
-using FIAP_CloudGames.Domain.Services;
+using FIAP_CloudGames.Application.Services;
 using Microsoft.Extensions.Options;
 
 namespace FIAP_CloudGames.Tests.Fixtures;

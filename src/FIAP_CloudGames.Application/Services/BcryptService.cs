@@ -1,6 +1,6 @@
 using FIAP_CloudGames.Domain.Interfaces.Services;
 
-namespace FIAP_CloudGames.Domain.Services;
+namespace FIAP_CloudGames.Application.Services;
 
 public class BcryptService : IPasswordService
 {

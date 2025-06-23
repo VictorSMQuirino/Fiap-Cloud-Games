@@ -1,7 +1,7 @@
 using FIAP_CloudGames.Domain.DTO.User;
 using FluentValidation;
 
-namespace FIAP_CloudGames.Domain.Validators.User;
+namespace FIAP_CloudGames.Application.Validators.User;
 
 public class CreateUserValidator : AbstractValidator<CreateUserDto>
 {

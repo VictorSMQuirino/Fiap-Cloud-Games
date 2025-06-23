@@ -2,7 +2,7 @@ using AutoFixture;
 using FIAP_CloudGames.Domain.Entities;
 using FIAP_CloudGames.Domain.Interfaces.Repositories;
 using FIAP_CloudGames.Domain.Interfaces.Services;
-using FIAP_CloudGames.Domain.Services;
+using FIAP_CloudGames.Application.Services;
 using Moq;
 
 namespace FIAP_CloudGames.Tests.Fixtures;

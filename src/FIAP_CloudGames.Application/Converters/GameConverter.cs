@@ -1,11 +1,11 @@
 using FIAP_CloudGames.Domain.DTO;
 using FIAP_CloudGames.Domain.Entities;
 
-namespace FIAP_CloudGames.Domain.Extensions;
+namespace FIAP_CloudGames.Application.Converters;
 
-public static class GameExtensions
+public static class GameConverter
 {
-    public static Game ConvertDtoToGame(this CreateGameDto gameDto) 
+    public static Game ConvertDtoToGame(this CreateGameDto gameDto)
         => new()
         {
             Title = gameDto.Title,
@@ -21,11 +21,10 @@ public static class GameExtensions
         
         return game;
     }
-
+    
     public static GameDto ToGameDto(this Game game) 
         => new(game.Id, game.Title, game.Price, game.ReleaseDate);
 
     public static List<GameDto> ToGameDtoList(this IEnumerable<Game> games) 
         => games.Select(g => g.ToGameDto()).ToList();
-    
 }

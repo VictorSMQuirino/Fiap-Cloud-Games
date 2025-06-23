@@ -2,7 +2,7 @@ using FIAP_CloudGames.Domain.DTO;
 using FIAP_CloudGames.Domain.Extensions;
 using FluentValidation;
 
-namespace FIAP_CloudGames.Domain.Validators.Game;
+namespace FIAP_CloudGames.Application.Validators.Game;
 
 public class CreateGameValidator : AbstractValidator<CreateGameDto>
 {

@@ -1,6 +1,6 @@
+using FIAP_CloudGames.Application.Converters;
 using FIAP_CloudGames.Domain.Entities;
 using FIAP_CloudGames.Domain.Exceptions;
-using FIAP_CloudGames.Domain.Extensions;
 using FIAP_CloudGames.Tests.Fixtures;
 using FluentAssertions;
 using Moq;
