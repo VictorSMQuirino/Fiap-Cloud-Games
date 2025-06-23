@@ -6,6 +6,7 @@ coverage:
         threshold: 10% 
         paths: 
           - src/FIAP_CloudGames.Domain/
+          - src/FIAP_CloudGames.Application/
 
 fixes:
   - "::/home/runner/work/Fiap-Cloud-Games/Fiap-Cloud-Games/"
