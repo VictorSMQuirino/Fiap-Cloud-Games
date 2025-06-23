@@ -8,6 +8,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/FIAP_CloudGames.API/FIAP_CloudGames.API.csproj", "src/FIAP_CloudGames.API/"]
+COPY ["src/FIAP_CloudGames.Application/FIAP_CloudGames.Application.csproj", "src/FIAP_CloudGames.Application/"]
 COPY ["src/FIAP_CloudGames.Domain/FIAP_CloudGames.Domain.csproj", "src/FIAP_CloudGames.Domain/"]
 COPY ["src/FIAP_CloudGames.Infrastructure/FIAP_CloudGames.Infrastructure.csproj", "src/FIAP_CloudGames.Infrastructure/"]
 RUN dotnet restore "src/FIAP_CloudGames.API/FIAP_CloudGames.API.csproj"
