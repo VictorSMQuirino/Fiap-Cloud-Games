@@ -63,8 +63,9 @@ jobs:
       - name: Fix coverage report paths
         if: steps.find_report.outputs.path != ''
         run: |
+          FIX_PATH="/home/runner/work/Fiap-Cloud-Games"
           echo "Fixing paths in ${{ steps.find_report.outputs.path }}"
-          sed -i "s|$GITHUB_WORKSPACE/||g" ${{ steps.find_report.outputs.path }}
+          sed -i "s|$FIX_PATH||g" ${{ steps.find_report.outputs.path }}
           echo "Paths in report fixed. Showing first 10 lines of the fixed file:"
           head -n 10 ${{ steps.find_report.outputs.path }}  
         
