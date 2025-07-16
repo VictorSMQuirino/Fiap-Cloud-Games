@@ -53,6 +53,9 @@ jobs:
         with:
           name: build-output
           
+      - name: Restore dependencies
+        run: dotnet restore
+          
       - name: Run tests  
         run: dotnet test tests/FIAP_CloudGames.Tests/FIAP_CloudGames.Tests.csproj --no-build --configuration Release --settings coverlet.runsettings --collect:"XPlat Code Coverage" --results-directory ./coverage
       
